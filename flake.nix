@@ -27,10 +27,12 @@
           bash-language-server
           haskell-language-server
           ghc
+          dart
           nil
           nixd
           hyprls
-          vscode-json-languageserver
+          # vscode-json-languageserver
+          vscode-langservers-extracted
           superhtml
           htmx-lsp
           typescript-language-server
