@@ -2,7 +2,7 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		priority = 1000,
-		-- enabled = false,
+		enabled = false,
 		config = function()
 			require("tokyonight").setup({
 				styles = {
@@ -22,7 +22,7 @@ return {
 		"rose-pine/neovim",
 		name = "rose-pine.neovim",
 		priority = 1000,
-		enabled = false,
+		-- enabled = false,
 		config = function()
 			vim.cmd.colorscheme("rose-pine")
 		end,

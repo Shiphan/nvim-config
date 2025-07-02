@@ -1,11 +1,25 @@
 return {
 	"echasnovski/mini.nvim",
 	config = function()
-		require("mini.statusline").setup({})
+		local statusline = require("mini.statusline")
+		statusline.setup({})
+		statusline.section_location = function()
+			return "%2l:%-2v"
+		end
 		require("mini.pairs").setup({})
-		require("mini.surround").setup({}) -- TODO: setup keybinds for this
-		-- require("mini.notify").setup({})
+		require("mini.surround").setup({
+			mappings = {
+				add = "sa",
+				replace = "sr",
+				delete = "",
+				find = "",
+				find_left = "",
+				highlight = "",
+				update_n_lines = "",
+				suffix_last = "",
+				suffix_next = "",
+			},
+		})
 		require("mini.icons").setup({})
-		require("mini.git").setup({}) -- TODO: keybinds for in editor add/diff/blame
 	end,
 }
