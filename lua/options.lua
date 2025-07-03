@@ -17,6 +17,7 @@ vim.opt.clipboard = "unnamedplus" -- share clipboard with OS
 vim.opt.scrolloff = 10
 vim.opt.confirm = true
 vim.opt.spelllang = { "en_us", "cjk" }
+-- vim.opt.winborder = "rounded"
 
 vim.diagnostic.config({
 	virtual_text = true,

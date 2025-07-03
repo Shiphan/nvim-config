@@ -72,8 +72,6 @@ return {
 		},
 		config = function()
 			vim.lsp.enable(enabled_servers)
-
-			-- vim.o.winborder = "rounded"
 		end,
 	},
 	{
