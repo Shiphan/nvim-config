@@ -27,36 +27,3 @@ vim.keymap.set("n", "<C-E>", function()
 		end,
 	})
 end, { desc = "Expand diagnostic messages" })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client == nil then
-			return
-		end
-
-		local lsp_methods = vim.lsp.protocol.Methods
-
-		-- TODO: this should enable the builtin completion, but didn't work
-		-- if client:supports_method(lsp_methods.textDocument_completion) then
-		-- 	vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-		-- end
-
-		if client:supports_method(lsp_methods.textDocument_formatting) then
-			vim.keymap.set("n", "<leader>f", function()
-				vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
-			end)
-		end
-
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			buffer = event.buf,
-			callback = vim.lsp.buf.document_highlight,
-		})
-
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-			buffer = event.buf,
-			callback = vim.lsp.buf.clear_references,
-		})
-		-- TODO: add more keymaps: goto definitions, implementation...
-	end,
-})
