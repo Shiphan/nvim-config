@@ -13,6 +13,5 @@ return {
 		vim.keymap.set("n", "<C-A>", function() harpoon:list():select(1) end, { desc = "" })
 		vim.keymap.set("n", "<C-B>", function() harpoon:list():select(2) end, { desc = "" })
 		vim.keymap.set("n", "<C-C>", function() harpoon:list():select(3) end, { desc = "" })
-		vim.keymap.set("n", "<C-D>", function() harpoon:list():select(4) end, { desc = "" })
 	end
 }
