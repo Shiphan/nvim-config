@@ -28,6 +28,7 @@ local servers = {
 	"templ",
 	"svelte",
 	"lua_ls",
+	"tinymist",
 }
 
 local function set_keymap(event)

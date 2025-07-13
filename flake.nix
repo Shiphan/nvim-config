@@ -43,6 +43,7 @@
           lua-language-server
           stylua
           marksman
+          tinymist
         ];
     in
     {
