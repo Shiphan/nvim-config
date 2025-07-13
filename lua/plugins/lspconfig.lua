@@ -101,7 +101,7 @@ return {
 				-- TODO: see if the builtin one is good or not
 				"saghen/blink.cmp",
 				version = "1.*",
-				dependencies = { "rafamadriz/friendly-snippets" },
+				-- dependencies = { "rafamadriz/friendly-snippets" },
 				opts = {},
 				-- opts = {
 				-- 	-- keymap = { preset = "default" },
