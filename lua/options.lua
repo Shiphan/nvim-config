@@ -15,7 +15,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.clipboard = "unnamedplus" -- share clipboard with OS
 vim.opt.scrolloff = 10
-vim.opt.confirm = true
+-- vim.opt.confirm = true
 vim.opt.spelllang = { "en_us", "cjk" }
 -- vim.opt.winborder = "rounded"
 
