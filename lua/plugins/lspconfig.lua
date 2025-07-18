@@ -62,10 +62,12 @@ local function set_keymap(event)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 	end
 
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		buffer = event.buf,
-		callback = vim.lsp.buf.document_highlight,
-	})
+	if client:supports_method(lsp_methods.textDocument_documentHighlight) then
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			buffer = event.buf,
+			callback = vim.lsp.buf.document_highlight,
+		})
+	end
 
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		buffer = event.buf,
