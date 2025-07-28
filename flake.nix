@@ -35,6 +35,8 @@
           vscode-langservers-extracted
           superhtml
           htmx-lsp
+          tailwindcss_4
+          tailwindcss-language-server
           typescript-language-server
           php84Packages.psalm
           phpactor

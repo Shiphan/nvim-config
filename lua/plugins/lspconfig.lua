@@ -27,6 +27,7 @@ local servers = {
 	"ts_ls",
 	"templ",
 	"svelte",
+	"tailwindcss",
 	"lua_ls",
 	"tinymist",
 }
