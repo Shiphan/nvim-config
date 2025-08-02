@@ -12,6 +12,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       packages =
         pkgs: with pkgs; [
+          curl
           ripgrep
 
           # LSPs
@@ -21,29 +22,34 @@
           gopls
           jdt-language-server
           kotlin-language-server
-          pyright
-          postgres-lsp
           arduino-language-server
-          bash-language-server
-          haskell-language-server
           ghc
-          dart
+          haskell-language-server
+
           nil
           nixd
+          bash-language-server
           hyprls
-          # vscode-json-languageserver
+
+          postgres-lsp
+
+          lua-language-server
+          stylua
+          pyright
+          basedpyright
+          dart
+
+          typescript-language-server
           vscode-langservers-extracted
           superhtml
           htmx-lsp
           tailwindcss_4
           tailwindcss-language-server
-          typescript-language-server
+          templ
           php84Packages.psalm
           phpactor
-          templ
           svelte-language-server
-          lua-language-server
-          stylua
+
           marksman
           tinymist
         ];
@@ -61,6 +67,6 @@
           programs.neovim.enable = true;
           environment.systemPackages = packages pkgs;
         };
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-tree;
     };
 }
