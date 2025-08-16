@@ -18,6 +18,8 @@ vim.opt.scrolloff = 10
 -- vim.opt.confirm = true
 vim.opt.spelllang = { "en_us", "cjk" }
 vim.opt.winborder = "rounded"
+vim.opt.completeopt = "menuone,fuzzy,popup,noinsert"
+vim.opt.virtualedit = "block"
 
 vim.diagnostic.config({
 	virtual_text = true,

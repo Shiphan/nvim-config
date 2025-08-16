@@ -32,7 +32,7 @@ local servers = {
 	"tinymist",
 }
 
-local function set_keymap(event)
+local function lsp_attach(event)
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
 	if client == nil then
 		return
@@ -40,10 +40,14 @@ local function set_keymap(event)
 
 	local lsp_methods = vim.lsp.protocol.Methods
 
-	-- TODO: this should enable the builtin completion, but didn't work
-	-- if client:supports_method(lsp_methods.textDocument_completion) then
-	-- 	vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-	-- end
+	if client:supports_method(lsp_methods.textDocument_completion) then
+		vim.lsp.completion.enable(true, client.id, event.buf)
+
+		-- TODO: for now the builtin completion is not for me
+		-- 1. autotrigger will only trigger on the `triggerCharacter` from lsp
+		-- 2. no window border around the completion selecting window
+		-- vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+	end
 
 	if client:supports_method(lsp_methods.textDocument_formatting) then
 		vim.keymap.set("n", "<leader>f", function()
@@ -101,7 +105,6 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{
-				-- TODO: see if the builtin one is good or not
 				"saghen/blink.cmp",
 				version = "1.*",
 				-- dependencies = { "rafamadriz/friendly-snippets" },
@@ -119,7 +122,7 @@ return {
 		config = function()
 			vim.lsp.enable(enabled_servers)
 			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = set_keymap,
+				callback = lsp_attach,
 			})
 		end,
 	},
