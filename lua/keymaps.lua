@@ -1,5 +1,10 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+vim.keymap.set({"n", "i"}, "<MiddleMouse>", "")
+vim.keymap.set({"n", "i"}, "<2-MiddleMouse>", "")
+vim.keymap.set({"n", "i"}, "<3-MiddleMouse>", "")
+vim.keymap.set({"n", "i"}, "<4-MiddleMouse>", "")
+
 -- vim.keymap.set("n", "<C-H>", "<C-W><C-H>", { desc = "Move focus to the left window" })
 -- vim.keymap.set("n", "<C-L>", "<C-W><C-L>", { desc = "Move focus to the right window" })
 -- vim.keymap.set("n", "<C-J>", "<C-W><C-J>", { desc = "Move focus to the lower window" })

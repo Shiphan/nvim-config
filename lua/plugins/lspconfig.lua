@@ -130,7 +130,13 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim", -- show progress of lsp
-		opts = {},
+		opts = {
+			notification = {
+				window = {
+					winblend = 0,
+				},
+			},
+		},
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",

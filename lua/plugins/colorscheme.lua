@@ -24,6 +24,11 @@ return {
 		priority = 1000,
 		-- enabled = false,
 		config = function()
+			require("rose-pine").setup({
+				styles = {
+					transparency = true,
+				},
+			})
 			vim.cmd.colorscheme("rose-pine")
 		end,
 	},
