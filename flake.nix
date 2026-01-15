@@ -30,8 +30,9 @@
           nixd
           bash-language-server
           hyprls
+          kdePackages.qtdeclarative
 
-          postgres-lsp
+          postgres-language-server
 
           lua-language-server
           stylua
