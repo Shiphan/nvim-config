@@ -6,7 +6,7 @@ require("lazy-bootstrap")
 
 require("lazy").setup({
 	spec = "plugins",
-	change_detection = { notify = false, },
+	change_detection = { notify = false },
 	-- checker = { enabled = true },
-	rocks = { enabled = false, },
+	rocks = { enabled = false },
 })

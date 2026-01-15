@@ -10,8 +10,8 @@ return {
 			defaults = {
 				layout_strategy = "vertical",
 				layout_config = {
-					height = { padding = 0, },
-					width = { padding = 0, },
+					height = { padding = 0 },
+					width = { padding = 0 },
 					preview_cutoff = 20,
 				},
 				mappings = {
@@ -20,7 +20,7 @@ return {
 						["<C-x>"] = false,
 					},
 				},
-			}
+			},
 		})
 
 		local builtin = require("telescope.builtin")

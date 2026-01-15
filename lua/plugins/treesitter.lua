@@ -8,7 +8,7 @@ return {
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
 			highlight = { enable = true },
-			indent = { enable = true},
+			indent = { enable = true },
 		})
 
 		-- TODO: idk how to use highlighting of treesitter main branch
