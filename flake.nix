@@ -14,6 +14,9 @@
         pkgs: with pkgs; [
           curl
           ripgrep
+          fd
+          gnutar
+          tree-sitter
 
           # LSPs
           clang-tools

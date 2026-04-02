@@ -1,13 +1,10 @@
-return {
-	"folke/todo-comments.nvim",
-	dependencies = {
-		"nvim-telescope/telescope.nvim",
-	},
-	config = function()
-		require("todo-comments").setup({
-			signs = false,
-		})
+vim.pack.add({
+	"https://github.com/folke/todo-comments.nvim",
+	"https://github.com/nvim-telescope/telescope.nvim",
+})
 
-		vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<CR>", { desc = "Search TODO comments" })
-	end,
-}
+require("todo-comments").setup({
+	signs = false,
+})
+
+vim.keymap.set("n", "<leader>st", "<Cmd>TodoTelescope<CR>", { desc = "Search TODO comments" })

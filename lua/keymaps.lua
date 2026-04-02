@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", "<Cmd>nohlsearch<CR>")
 
 vim.keymap.set({ "n", "i" }, "<MiddleMouse>", "")
 vim.keymap.set({ "n", "i" }, "<2-MiddleMouse>", "")

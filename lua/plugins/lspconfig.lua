@@ -13,6 +13,7 @@ local servers = {
 	"hls",
 	"gdscript",
 	"bashls",
+	"nushell",
 	"nil_ls",
 	{ "nixd", use_mason = false },
 	"hyprls",
@@ -76,6 +77,10 @@ local function lsp_attach(event)
 		})
 	end
 
+	-- if client:supports_method(lsp_methods.textDocument_semanticTokens_full) then
+	-- 	vim.treesitter.stop(event.buf)
+	-- end
+
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		buffer = event.buf,
 		callback = vim.lsp.buf.clear_references,
@@ -102,59 +107,51 @@ for _, server in ipairs(servers) do
 	end
 end
 
-return {
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			{
-				"saghen/blink.cmp",
-				version = "1.*",
-				-- dependencies = { "rafamadriz/friendly-snippets" },
-				opts = {},
-				-- opts = {
-				-- 	-- keymap = { preset = "default" },
-				-- 	appearance = { nerd_font_variant = "mono" },
-				-- 	completion = { documentation = { auto_show = true } },
-				-- 	sources = { default = { "lsp", "path", "snippets", "buffer" }, },
-				-- 	fuzzy = { implementation = "prefer_rust_with_warning" }
-				-- },
-				-- opts_extend = { "sources.default" }
-			},
-		},
-		config = function()
-			vim.lsp.enable(enabled_servers)
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = lsp_attach,
-			})
-		end,
+vim.pack.add({
+	"https://github.com/neovim/nvim-lspconfig",
+	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
+	-- "https://github.com/rafamadriz/friendly-snippets",
+	"https://github.com/j-hui/fidget.nvim", -- show progress of lsp
+	"https://github.com/folke/lazydev.nvim",
+})
+
+require("blink.cmp").setup({
+	-- keymap = { preset = "default" },
+	appearance = { nerd_font_variant = "mono" },
+	completion = { documentation = { auto_show = true } },
+	sources = { default = { "lsp", "path", "snippets", "buffer" } },
+	fuzzy = {
+		implementation = "prefer_rust_with_warning",
+		prebuilt_binaries = { download = true },
 	},
-	{
-		"j-hui/fidget.nvim", -- show progress of lsp
-		opts = {
-			notification = {
-				window = {
-					winblend = 0,
-				},
-			},
+})
+
+vim.lsp.enable(enabled_servers)
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = lsp_attach,
+})
+
+require("fidget").setup({
+	notification = {
+		window = {
+			winblend = 0,
 		},
 	},
-	{
-		"mason-org/mason-lspconfig.nvim",
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-			"neovim/nvim-lspconfig",
-		},
-		enabled = use_mason,
-		opts = {
-			ensure_installed = servers_for_mason,
-		},
+})
+
+require("lazydev").setup({
+	library = {
+		{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 	},
-	{
-		"folke/lazydev.nvim",
-		opts = {
-			library = {
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-}
+})
+
+if use_mason then
+	vim.pack.add({
+		"https://github.com/mason-org/mason-lspconfig.nevim",
+		"https://github.com/mason-org/mason.nvim",
+	})
+
+	require("mason-lspconfig").setup({
+		ensure_installed = servers_for_mason,
+	})
+end

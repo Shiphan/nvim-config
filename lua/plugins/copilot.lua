@@ -1,6 +1,3 @@
-return {
-	{
-		"github/copilot.vim",
-		enabled = false,
-	},
-}
+vim.pack.add({
+	"https://github.com/github/copilot.vim",
+})
