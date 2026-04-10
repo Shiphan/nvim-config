@@ -13,9 +13,13 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 local highlight_autocmd_group = vim.api.nvim_create_augroup("treesitter_highlight", { clear = true })
 local function create_highlight_autocmd()
+	local pattern = require("nvim-treesitter").get_installed()
+	if #pattern == 0 then
+		return
+	end
 	vim.api.nvim_create_autocmd("FileType", {
 		group = highlight_autocmd_group,
-		pattern = require("nvim-treesitter").get_installed(),
+		pattern = pattern,
 		callback = function()
 			vim.treesitter.start()
 		end,
@@ -31,6 +35,9 @@ local function create_autoinstall_autocmd()
 	local pattern = vim.tbl_filter(function(value)
 		return not vim.tbl_contains(installed, value)
 	end, available)
+	if #pattern == 0 then
+		return
+	end
 
 	vim.api.nvim_create_autocmd("FileType", {
 		group = autoinstall_autocmd_group,
