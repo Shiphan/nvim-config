@@ -19,8 +19,10 @@ vim.opt.clipboard = "unnamedplus" -- share clipboard with OS
 vim.opt.scrolloff = 10
 -- vim.opt.confirm = true
 vim.opt.spelllang = { "en_us", "cjk" }
+vim.opt.pumborder = "rounded"
 vim.opt.winborder = "rounded"
-vim.opt.completeopt = "menuone,fuzzy,popup,noinsert"
+vim.opt.autocomplete = false -- Switch to builtin auto complete when it's ready for my use case
+vim.opt.completeopt = { "menuone", "fuzzy", "noinsert", "preview" }
 vim.opt.virtualedit = "block"
 
 vim.diagnostic.config({
